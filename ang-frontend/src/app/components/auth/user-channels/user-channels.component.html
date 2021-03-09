@@ -1,0 +1,17 @@
+<h1 class="text-center separate-top-1">Select Your Channel</h1>
+<div class="container separate-top-2">
+    <div class="row">
+        <div class="col-3">
+            <a routerLink="/user" class="w-100">
+                <img class="channel-image" src="https://via.placeholder.com/350" alt="">
+            </a>
+            <h5 class="separator">Events</h5>
+        </div>
+        <div class="col-3" *ngFor="let channel of channels">
+            <a (click)="channelActive(channel.id)" class="w-100">
+                <img class="channel-image" src="https://via.placeholder.com/350" alt="">
+            </a>
+            <h5 class="separator">{{channel.title}}</h5>
+        </div>
+    </div>
+</div>

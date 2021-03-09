@@ -1,0 +1,85 @@
+<!-- <div class="card text-dark bg-light mb-3 w-100">
+        <div class="card-header">{{plan.title}}</div>
+        <div class="card-body">
+            <h5 class="card-title">{{plan.price}} $</h5>
+            <p class="card-text">{{plan.description}}</p>
+        </div>
+        <div class="card-footer bg-light">
+            <div class="w-100">
+                <div class="row">
+                        <div class="col-1">
+                                <a class="edit-item" (click)="onUpdatePopup(plan.id)"><i class="fas fa-edit"></i></a>
+                        </div>
+                        <div class="col-1">
+                                <a class="delete-item" (click)="onDeletePopup(plan.id)"><i class="fas fa-trash-alt"></i></a>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="popup" [ngClass]="{'active': onUpdateActive == plan.id }">
+            <div class="card">
+                    <div class="card-header">Update Plan <a class="float-right" (click)="closeModule()"><i class="fas fa-times"></i></a></div>
+    
+                    <div class="card-body">
+    
+                            <form #updatePlanForm=ngForm (ngSubmit)="onSubmit(updatePlanForm)">
+                                    <div class="form-group">
+                                    <div class="alert alert-danger" [hidden]="!error.title">
+                                        {{error.title}}
+                                    </div>
+                                    <label for="title">New Plan Title</label>
+                                    <input type="text" name="title" class="form-control" id="title"  placeholder="Enter new title" [(ngModel)]="planTypeTitle" required>
+                                    </div>
+                                    <div class="form-group">
+                                    <div class="alert alert-danger" [hidden]="!error.description">
+                                        {{error.description}}
+                                    </div>
+                                    <label for="description">New Plan Description</label>
+                                    <input type="text" name="description" class="form-control" id="description"  placeholder="Enter new description" [(ngModel)]="planTypeDescription" required>
+                                    </div>
+                                    <div class="form-group">
+                                    <div class="alert alert-danger" [hidden]="!error.price">
+                                        {{error.price}}
+                                    </div>
+                                    <label for="price">New Plan Price</label>
+                                    <input type="text" name="price" class="form-control" id="price"  placeholder="Enter new Price" [(ngModel)]="planTypePrice" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="alert alert-danger" [hidden]="!error.active">
+                                               {{error.active}}
+                                        </div>                                       
+                                        <label for="active">Status</label>
+                                        <select name="active" id="active" [(ngModel)]="planTypeActive">
+                                            <option value="1">True</option>
+                                            <option value="0">False</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                    <div class="row">
+                                            <div class="w-100">
+                                              <button type="submit" class="btn btn-primary" >Update Plan</button>
+                                            </div>
+                                    </div>
+                                    </div>
+                            </form>
+                    </div>
+            </div>
+    </div>
+    <div class="popup" [ngClass]="{'active': onDeleteActive == plan.id }">
+            <div class="card">
+                    <div class="card-header">Are you sure to delete this Plan  <a class="float-right" (click)="closeModule()"><i class="fas fa-times"></i></a></div>
+                    <div class="card-body">
+                            <div class="form-group">
+                                    <div class="w-100">
+                                    <button type="submit" class="btn btn-danger" (click)="onDelete(plan.id)" >Delete Plan</button>
+                                    </div>
+                            </div>
+                    </div>
+            </div>
+    </div>
+    <div class="overlay" [ngClass]="{'active': onOverlayActive == plan.id }"></div>
+
+    <div class="response  bg-success" [ngClass]="{'response-active':responseActive}">
+                <p  *ngIf="response">{{response}}</p>
+            </div> -->

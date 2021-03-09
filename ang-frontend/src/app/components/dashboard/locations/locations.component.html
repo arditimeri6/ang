@@ -1,0 +1,20 @@
+<div class="container-fluid separator">
+    <div class="row">
+            <div class="col-5">
+                <app-add-location></app-add-location>
+            </div>
+            <div class="col-7">
+                    <div class="card w-100">
+                        <div class="card-header">
+                            Locations
+                       </div>
+                          <ul class="list-group list-group-flush">
+                              <li class="list-group-item" *ngFor="let location of locations"><app-location [location]="location"></app-location></li>  
+                        </ul>
+                    </div>
+            </div>
+    </div>
+</div>
+<div class="response  bg-danger" [ngClass]="{'response-active':responseActive}">
+    <p *ngIf="response">{{response}}</p>
+</div>

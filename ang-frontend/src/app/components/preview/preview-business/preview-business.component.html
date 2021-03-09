@@ -1,0 +1,85 @@
+<img class="w-100" src="{{thumbnail}}" alt="{{title}} thumbnail">
+<h3>{{title}}</h3>
+<app-preview-textbox class="w-100"></app-preview-textbox>
+<app-preview-photogallery class="w-100"></app-preview-photogallery>
+<app-preview-videogallery class="w-100"></app-preview-videogallery>
+<app-preview-places class="w-100"></app-preview-places>
+
+<div class="container-fluid">
+    <div class="row m-3">
+        <div class="approve mr-3" *ngIf="approved_at == null">
+            <button class="btn btn-success" (click)="approve()">Approve</button>
+        </div>
+        <div class="dont-approve mr-4" *ngIf="approved_at == null">
+            <button class="btn btn-danger" (click)="dontApprove()">Don't Approve</button>
+        </div>
+        <div class="dont-approve-form" [ngClass]="{'d-none':activateForm}">
+            <form class="d-flex" #reasonForm=ngForm (ngSubmit)="onSubmit()">
+                <textarea name="reason" class="form-control mr-2" id="reason" rows="1"  [(ngModel)]="form.reason" required>Reason</textarea>
+                <button type="submit" class="btn btn-danger mr-2">Send</button>
+            </form>
+        </div>
+    </div>
+</div>
+    <!-- <div class="card-body">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="logo"><img src="{{logo}}" alt="Logo"></div>
+            </div>
+            <div class="col-md-9">
+                <div class="title">
+                    <p><span class="font-weight-bold">Title: </span> {{title}}</p>
+                </div>
+                <div class="plan">
+                    <p><span class="font-weight-bold">Plan: </span> {{plan}}</p>
+                </div>
+                <div class="business_type">
+                    <p><span class="font-weight-bold">Business Type: </span> {{business_type}}</p>
+                </div>
+                <div class="status">
+                    <p> <span class="font-weight-bold">Status: </span>
+                        <span *ngIf="status == 1" class="text-success">Verified</span> 
+                        <span *ngIf="status == 0" class="text-danger">Not Verified</span>
+                    </p>
+                </div>
+                <div class="paid_at">
+                    <p> <span class="font-weight-bold">Paid At: </span>
+                        <span *ngIf="paid_at != null" class="text-success">{{paid_at}}</span> 
+                        <span *ngIf="paid_at == null" class="text-danger">Not paid</span>
+                    </p>
+                </div>
+                <div class="approved_at">
+                    <p> <span class="font-weight-bold">Approved At: </span>
+                        <span *ngIf="approved_at != null" class="text-success">{{approved_at}}</span> 
+                        <span *ngIf="approved_at == null" class="text-danger">Not Approved</span>
+                    </p>
+                </div>
+
+                <div class="reason">
+                    <p> <span class="font-weight-bold">Reason: </span> 
+                        <span *ngIf="reason != null" class="text-danger">{{reason}}</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <app-preview-textbox></app-preview-textbox>
+            </div>
+            <div class="col-md-4">
+                <app-preview-photogallery></app-preview-photogallery>
+            </div>
+            <div class="col-md-4">
+                <app-preview-videogallery></app-preview-videogallery>
+            </div>
+            <div class="col-md-6">
+                <app-preview-places></app-preview-places>
+            </div>
+        </div> -->
+
+       
+<!-- 
+<div class="response  bg-success" [ngClass]="{'response-active':responseActive}">
+    <p *ngIf="response">{{response}}</p>
+</div> -->

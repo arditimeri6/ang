@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row">
+      <div class="mt-4 col-8 offset-2">
+        <div class="card">
+          <div class="card-header">Send email verification</div>
+      
+          <div class="card-body">
+              <div class="alert alert-danger" [hidden]="!error.email">
+                  {{error.email}}
+                 </div>
+              <form #verifyForm=ngForm (ngSubmit)="onSubmit()">
+                  <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" name="email" class="form-control" id="email"  placeholder="Enter email" [(ngModel)]="form.email" required>
+                  </div>
+                  <div class="col-12">
+                    <div class="row">
+                      <div class="w-100">
+                        <button type="submit" class="btn btn-primary" [disabled]="!verifyForm.valid">Verify</button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> 

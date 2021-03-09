@@ -1,0 +1,20 @@
+<div class="row">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-4">
+                    {{calendar.place}}
+                </div>
+                <div class="col-4">
+                        {{calendar.date_from | date:'short'}} -  {{calendar.date_to | date:'short'}}
+                </div>
+                <div class="col-2">
+                        {{calendar.status}}
+                </div>
+                <div class="col-2">
+                    <button class="btn btn-success" style="margin-right:10px">Konfirmo</button>
+                    <button class="btn btn-danger">Anulo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>

@@ -1,0 +1,61 @@
+<!-- <img class="w-100" src="{{place?.thumbnail}}" alt="">
+<h3>{{place?.title}}</h3>
+<button class="btn btn-sucess">Req</button> -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-9">
+            <div class="card bg-dark text-white">
+            <img class="card-img" src="{{place?.thumbnail}}" alt="Card image">
+            <div class="card-img-overlay">
+                <h5 class="card-title">{{place?.title}}</h5>
+  
+            </div>
+        </div>
+        </div>
+        <div class="col-3">
+                <div class="card text-white bg-warning mb-3 w-100">
+               <div class="card-header">Rezervo</div>
+                <div class="card-body">
+                    <p class="card-text">Lokacioni : {{place?.location}}</p>
+                    <p class="card-text">Adresa: {{place?.address}}</p>
+                </div>
+                <div class="card-footer">
+                        <button type="button" class="btn btn-light" (click)="activeRezervationModal()">Rezervo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="overlay" [ngClass]="{'active':modalActive}" (click)="close()"></div>
+<div class="card popup" [ngClass]="{'active':modalActive}">
+        <div class="card-header">Rezervo</div>
+        <div class="card-body">
+            <form #reservationform=ngForm (ngSubmit)="reservationForm()">
+                <div class="alert alert-danger" [hidden]="!error.from">
+                    {{error.from}}
+                </div>
+                <div class="form-group">
+                    <label for="from"> From</label>
+                    <input name="from" class="form-control" id="from" type="datetime-local" [(ngModel)]="form.from">
+                </div>
+                <div class="alert alert-danger" [hidden]="!error.to">
+                        {{error.to}}
+                    </div>
+                <div class="form-group">
+                    <label for="to"> To</label>
+                      <input name="to" class="form-control" id="to" type="datetime-local"  [(ngModel)]="form.to">
+                </div>
+                <div class="col-12">
+                    <div class="row">
+                        <div class="w-100">
+                          
+                            <button type="submit" class="btn btn-primary" >Save</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="response  bg-success" [ngClass]="{'response-active':responseActive}">
+            <p  *ngIf="response">{{response}}</p>
+        </div>

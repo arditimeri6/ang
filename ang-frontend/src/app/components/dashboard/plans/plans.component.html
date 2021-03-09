@@ -1,0 +1,5 @@
+<div class="container-fluid">
+    <div class="row">
+        <app-plan *ngFor="let plan of plans" class="col-md-3 m-3" [plan]="plan" [selectedPlan]="selectedPlan"></app-plan>
+    </div>
+</div>

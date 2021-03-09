@@ -1,0 +1,217 @@
+
+      <div class="row">
+          <ng-template 
+          #customCellTemplate 
+          let-day="day" 
+          let-locale="locale"
+          mwlDroppable
+          (drop)="externalDrop($event.dropData.event)"
+          dragOverClass="drag-over"
+          >
+              <div class="cal-cell-top">
+                <span class="cal-day-badge" *ngIf="day.badgeTotal > 0"
+                  >{{ day.badgeTotal }}</span
+                >
+                <span class="cal-day-number"
+                  >{{ day.date | calendarDate:'monthViewDayNumber':locale }}</span
+                >
+              </div>
+              <div [ngStyle]="{'background': event.color.primary}"             
+              mwlDraggable
+              [dropData]="{event: event}"
+              dragActiveClass="drag-active"
+                (dragStart)="dragStarted(event)"
+              *ngFor="let event of day.events | slice:0:3;"
+              (dragEnd)="dragEnd(event)"
+              >{{event.title}} {{event.id}}</div>
+              <div *ngIf="day.badgeTotal > 3"> and {{day.badgeTotal - 3}} more</div>
+            </ng-template>
+
+            <ng-template #weekEventTemplate let-weekEvent="weekEvent" let-locale="locale">
+              <div class="content-wrapper">
+                  <h5 class="cal-event-title event-color">{{weekEvent.event.title}}</h5>
+                  <div class="separator-line"></div>
+                  <h5 class="cal-event-hours event-color">{{weekEvent.event.start | date:'hh:mm'}} - {{weekEvent.event.end | date:'hh:mm'}}</h5>
+                  <h6></h6>
+              </div>
+            </ng-template>
+            <div class="col-md-2">
+              <div class="row">
+                  <div class="col-12 separator">
+                      <div class="btn-group">
+                        <div
+                          class="btn btn-primary"
+                          (click)="setView(CalendarView.Month)"
+                          [class.active]="view === CalendarView.Month"
+                        >
+                          Month
+                        </div>
+                        <div
+                          class="btn btn-primary"
+                          (click)="setView(CalendarView.Week)"
+                          [class.active]="view === CalendarView.Week"
+                        >
+                          Week
+                        </div>
+                        <div
+                          class="btn btn-primary"
+                          (click)="setView(CalendarView.Day)"
+                          [class.active]="view === CalendarView.Day"
+                        >
+                          Day
+                        </div>
+                      </div>
+                    </div>
+                <div class="col-12 separator">
+                    <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+                </div> 
+                <div class="col-12 separator">
+                    <div class="btn-group">
+                        <div
+                          class="btn btn-primary"
+                          mwlCalendarPreviousView
+                          [view]="view"
+                          [(viewDate)]="viewDate"
+                          (viewDateChange)="closeOpenMonthViewDay()"
+                          
+                        >
+                          Previous
+                        </div>
+                        <div
+                          class="btn btn-outline-secondary"
+                          mwlCalendarToday
+                          [(viewDate)]="viewDate"
+                        >
+                          Today
+                        </div>
+                        <div
+                          class="btn btn-primary"
+                          mwlCalendarNextView
+                          [view]="view"
+                          [(viewDate)]="viewDate"
+                          (viewDateChange)="closeOpenMonthViewDay()"
+                        >
+                          Next
+                        </div>
+                      </div>
+                </div> 
+                <div class="col-12 separator">
+                    <mat-form-field>
+                        <input matInput [matDatepicker]="picker"  [(ngModel)]="viewDate"
+                               (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker  #picker></mat-datepicker>
+                      </mat-form-field>
+                </div> 
+                <div class="col-12">
+                  <h6>Pending List</h6>
+                </div>
+              </div>
+                <div
+                  class="card"
+                  mwlDroppable
+                  (drop)="externalDrop($event.dropData.event)"
+                  dragOverClass="drag-over"
+                >
+                  <div class="card-body">
+                    <p *ngIf="externalEvents.length === 0"><em>No events added</em></p>
+                    <ul>
+                      <li
+                        *ngFor="let event of externalEvents"
+                        mwlDraggable
+                        [dropData]="{event: event}"
+                        dragActiveClass="drag-active"
+                      >
+                        <a href="javascript:;">
+                          {{ event.title }} -- prej: {{event.start | date:'short'}}, deri me  {{event.end | date:'short'}}
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+          <div class="col-md-10">
+            <div class="position-relative overflow-hidden" [ngSwitch]="view">
+              <div *ngIf="timenow" id="timer" class="timer" >
+                <div class="arrow-right"></div>
+                {{timenow | date:'HH:mm' }}
+              </div>
+              <mwl-calendar-month-view
+                *ngSwitchCase="CalendarView.Month"
+                [viewDate]="viewDate"
+                [events]="events"
+                [activeDayIsOpen]="activeDayIsOpen"
+                [refresh]="refresh"
+                (dayClicked)="dayClicked($event.day)"
+                (eventClicked)="handleEvent('Clicked', $event.event)"
+                (eventTimesChanged)="eventDropped($event)"
+                [cellTemplate]="customCellTemplate"
+                [weekStartsOn]="weekStartsOn"
+                [locale]="locale"
+              >
+              </mwl-calendar-month-view>
+              <mwl-calendar-week-view
+                *ngSwitchCase="CalendarView.Week"
+                [viewDate]="viewDate"
+                [events]="events"
+                [refresh]="refresh"
+                [snapDraggedEvents]="false"
+                (eventTimesChanged)="eventDropped($event)"
+                [hourSegments]="4"
+                [hourSegmentHeight]="15"
+                [locale]="locale"
+                [eventTemplate]="weekEventTemplate"
+                [weekStartsOn]="weekStartsOn"
+              >
+              </mwl-calendar-week-view>
+              <mwl-calendar-day-view
+                *ngSwitchCase="CalendarView.Day"
+                [viewDate]="viewDate"
+                [events]="events"
+                [refresh]="refresh"
+                [snapDraggedEvents]="false"
+                (eventTimesChanged)="eventDropped($event)"
+                [hourSegments]="4"
+                [hourSegmentHeight]="10"
+                [eventTemplate]="weekEventTemplate"
+              >
+              </mwl-calendar-day-view>
+            </div>
+          </div>
+
+        </div>
+
+        <div>
+
+        </div>
+      
+        <div class="overlay" [ngClass]="{'active':overlayActive}" (click)="close()"></div>
+        <div class="side-card" [ngClass]="{'side-card-active':mounthInputActive}">
+          <div class="card-header">Set Time</div>
+              <div class="card-body">
+                  <form #addForm=ngForm (ngSubmit)="onSubmitDateMonth(addForm)">
+                      <div class="form-group">
+                          <label for="start">Start</label>
+                          <input type="time" name="start" class="form-control" id="start"  placeholder="Enter start time" ngModel required>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="end">End</label>
+                          <input type="time" name="end" class="form-control" id="end"  placeholder="Enter end time" ngModel required>
+                        </div>
+                      <div class="col-12">
+                      <div class="row">
+                          <div class="w-100">
+                          <button type="submit" class="btn btn-primary">Add</button>
+                  
+                          </div>
+                      </div>
+                      </div>
+                  </form>
+                  <button class="btn btn-danger float-right"(click)="onCancelEvent()">Cancel</button>
+              </div>
+        </div>
+
+      
+      
+      

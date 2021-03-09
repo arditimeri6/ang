@@ -1,0 +1,37 @@
+<div class="row">
+        <div class="col-3">
+                <p>{{trasheditem.title}}</p>
+        </div>
+        <div class="col-6">
+            <p>{{trasheditem.content}}</p>
+        </div>
+        <div class="col-1">
+            <a href="play-item" (click)="onPlayVideo(trasheditem.videoid)"><i class="fas fa-play"></i></a>
+        </div>
+        <div class="col-1">
+                <a class="edit-item" (click)="restorePopup(trasheditem.id)"><i class="fas fa-edit"></i></a>
+        </div>
+        <div class="col-1">
+                <a class="delete-item" (click)="deletePopup(trasheditem.id)"><i class="fas fa-trash-alt"></i></a>
+        </div>
+</div>
+<hr>
+
+<div class="overlay"[ngClass]="{'active':overlayActive == trasheditem.id}" (click)="close()"></div>
+<div class="card popup" [ngClass]="{'active':formDeleteActive == trasheditem.id}">
+    <div class="card-header">Are you sure you want to delete this item permanently</div>
+    <div class="card-body">
+        <button class="btn btn-default float-left" (click)="close()">Cancel</button>
+        <button class="btn btn-danger float-right"(click)="delete(trasheditem.id)">Delete</button>
+    </div>
+</div>
+<div class="card popup" [ngClass]="{'active':formRestoreActive == trasheditem.id}">
+        <div class="card-header">Are you sure you want to restore this item</div>
+        <div class="card-body">
+            <button class="btn btn-default float-left" (click)="close()">Cancel</button>
+            <button class="btn btn-success float-right" (click)="restore(trasheditem.id)">Restore</button>
+        </div>
+</div>
+<div class="response  bg-success" [ngClass]="{'response-active':responseActive == trasheditem.id }">
+        <p  *ngIf="response">{{response}}</p>
+</div>

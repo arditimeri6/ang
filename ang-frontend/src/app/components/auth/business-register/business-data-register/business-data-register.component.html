@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="row">
+      <div class="mt-4 col-8 offset-2">
+        <div class="card">
+          <div class="card-header">Register Business Data</div>
+      
+          <div class="card-body">
+              <div class="alert alert-danger" [hidden]="!error.name">
+                  {{error.name}}
+                 </div>
+              <form #registerForm=ngForm (ngSubmit)="onSubmit()">
+                  <div class="form-group">
+                    <label for="name">Enter Name</label>
+                    <input type="text" name="name" class="form-control" id="name"  placeholder="Enter Name" [(ngModel)]="form.name" required>
+                  </div>
+                  <div class="alert alert-danger" [hidden]="!error.password">
+                    {{error.password}}
+                   </div>
+                  <div class="form-group">
+                    <label for="name">Enter Password</label>
+                    <input type="password" name="password" class="form-control" id="password"  placeholder="Enter Password" [(ngModel)]="form.password" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="password_confirmation">Confirm Password</label>
+                    <input type="password" name="password_confirmation" class="form-control" id="password_confirmation"  placeholder="Confirm Password" [(ngModel)]="form.password_confirmation" required>
+                  </div>
+                  <div class="alert alert-danger" [hidden]="!error.title">
+                    {{error.title}}
+                   </div>
+                  <div class="form-group">
+                    <label for="title">Enter Business Name</label>
+                    <input type="text" name="title" class="form-control" id="title"  placeholder="Enter Business Name" [(ngModel)]="form.title" required>
+                  </div>
+                  <div class="alert alert-danger" [hidden]="!error.title">
+                    {{error.title}}
+                   </div>
+                  <div class="form-group" >
+                    <label for="business_type_id">Select Business Type</label>
+                    <select  name="business_type_id" class="form-control" id="business_type_id"  [(ngModel)]="form.business_type_id" required>
+                      <option value="null">Select Your Business</option>
+                      <option *ngFor="let business of businesses" [value]="business.id">{{business.title}}</option>
+                    </select>
+                  </div>
+                  <div class="col-12">
+                    <div class="row">
+                      <div class="w-100">
+                        <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">Go To Plan</button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> 

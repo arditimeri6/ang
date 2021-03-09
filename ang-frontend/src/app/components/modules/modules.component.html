@@ -1,0 +1,24 @@
+
+<div class="container-fluid separator">
+        <div class="row">
+                <div class="col-5">
+                    <app-add-module></app-add-module>
+                </div>
+                <div class="col-7">
+                        <div class="card w-100">
+                            <div class="card-header">
+                                Modules
+                           </div>
+                              <ul class="list-group list-group-flush">
+                                <li class="list-group-item" *ngFor="let module of modules">
+                                    <app-module  [module]="module"></app-module>
+                                </li>
+                            </ul>
+                        </div>
+                </div>
+        </div>
+</div>
+
+<div class="response  bg-danger" [ngClass]="{'response-active':responseActive}">
+    <p *ngIf="response">{{response}}</p>
+</div>

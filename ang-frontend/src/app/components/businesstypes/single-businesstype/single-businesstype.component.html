@@ -1,0 +1,47 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+                <div class="alert alert-success" role="alert" *ngIf="singleData">
+                        <h5>{{singleData.title}}</h5>
+                 </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="card w-100">
+                <div class="card-header">
+                    Modules Selected
+                </div>
+                <form #businessModuleForm=ngForm (ngSubmit)="onSubmit(businessModuleForm)">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" *ngFor="let module of modules; let last = last">
+                        {{module.title}}
+                        <input class="float-right" name="module" id="module-{{module.id}}" type="checkbox" value="{{module.id}}" ngModel>
+                       
+                    </li>
+                </ul>
+                    <div class="w-100 form-group space-item">
+                        <button type="submit" class="btn btn-primary float-right" [disabled]="!businessModuleForm.valid">Save Modules</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+                <div class="card w-100">
+                    <div class="card-header">
+                        Plan Avalible
+                    </div>
+                    <form #businessPlanForm=ngForm (ngSubmit)="onSubmitPlan(businessPlanForm)">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" *ngFor="let plan of plans; let last = last">
+                            {{plan.title}}
+                            <input class="float-right" name="module" id="plan-{{plan.id}}" type="checkbox" value="{{plan.id}}" ngModel>
+                            
+                        </li>
+                    </ul>
+                        <div class="w-100 form-group space-item">
+                            <button type="submit" class="btn btn-primary float-right" [disabled]="!businessPlanForm.valid">Save Plans</button>
+                        </div>
+                    </form>
+                </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+
+<div class="row">
+    <div class="col-10">
+            <p>{{module.title}}</p>
+    </div>
+    <div class="col-1">
+            <a class="edit-item" (click)="onUpdatePopup(module.id)"><i class="fas fa-edit"></i></a>
+    </div>
+    <div class="col-1">
+            <a class="delete-item" (click)="onDeletePopup(module.id)"><i class="fas fa-trash-alt"></i></a>
+    </div>
+</div>
+<div class="popup" [ngClass]="{'active': onUpdateActive == module.id }">
+        <div class="card">
+                <div class="card-header">Update Module <a class="float-right" (click)="closeModule()"><i class="fas fa-times"></i></a></div>
+
+                <div class="card-body">
+
+                        <form #updateModuleForm=ngForm (ngSubmit)="onSubmit(updateModuleForm)">
+                                <div class="form-group">
+                                <label for="exampleInputModule">Update Module</label>
+                                <input type="text" name="module" class="form-control" id="exampleInputModule"  placeholder="Enter new module title" [(ngModel)]="moduleTypeTitle" required>
+                                </div>
+                                <div class="col-12">
+                                <div class="row">
+                                        <div class="w-100">
+                                        <button type="submit" class="btn btn-primary" [disabled]="!updateModuleForm.valid">Save Module</button>
+                                        </div>
+                                </div>
+                                </div>
+                        </form>
+                </div>
+        </div>
+</div>
+<div class="popup" [ngClass]="{'active': onDeleteActive == module.id }">
+        <div class="card">
+                <div class="card-header">Are you sure to delete this Module  <a class="float-right" (click)="closeModule()"><i class="fas fa-times"></i></a></div>
+                <div class="card-body">
+                        <div class="form-group">
+                                <div class="w-100">
+                                <button type="submit" class="btn btn-danger" (click)="onDelete(module.id)" >Delete Location</button>
+                                </div>
+                        </div>
+                </div>
+        </div>
+</div>
+<div class="overlay" [ngClass]="{'active': onOverlayActive == module.id }"></div>
+
+<div class="response  bg-success" [ngClass]="{'response-active':responseActive}">
+                <p  *ngIf="response">{{response}}</p>
+</div>
+            

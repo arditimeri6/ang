@@ -1,0 +1,27 @@
+<div class="card popup" [ngClass]="{'active':formActive}">
+    <div class="card-header">Edit User</div>
+        <div class="card-body">
+            <form #editForm=ngForm (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="roles">Role</label>
+                    <select  class="form-control" id="roles" name="role" [(ngModel)]="form.role">
+                        <option *ngFor="let role of roles;" value="{{role}}"  [attr.selected]="form.role == role ? 'selected' : null" >{{role}}</option>
+                    </select>
+                </div>
+
+                <div class="col-12">
+                    <div class="row">
+                        <div class="w-100">
+                            <button type="submit" class="btn btn-primary mr-2" [disabled]="!editForm.valid">Edit</button>
+                            <a class="text-white btn btn-secondary" (click)="close()">Cancel</a>
+                        </div>
+                    </div>
+                </div> 
+            </form>
+        </div>
+  </div>
+<div class="overlay" [ngClass]="{'active':formActive}" (click)="close()"></div>
+
+<div class="response  bg-success" [ngClass]="{'response-active':responseActive}">
+    <p  *ngIf="response">{{response}}</p>
+</div>

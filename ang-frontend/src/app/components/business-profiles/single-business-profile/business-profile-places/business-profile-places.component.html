@@ -1,0 +1,10 @@
+<div class="alert alert-secondary" role="alert">
+   Places
+    </div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 separator" *ngFor="let place of places">
+            <app-business-profile-place [place]="place"></app-business-profile-place>
+        </div>
+    </div>
+</div>

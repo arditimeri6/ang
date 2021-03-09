@@ -1,0 +1,12 @@
+<div class="overlay" [ngClass]="{'active':formDeleteActive}" (click)="close()"></div>
+<div class="card popup" [ngClass]="{'active':formDeleteActive}">
+    <div class="card-header">Are you sure you want to archive this business?</div>
+    <div class="card-body">
+        <button class="btn btn-default float-left" (click)="close()">Cancel</button>
+        <button class="btn btn-danger float-right"(click)="delete(businessId)">Archive</button>
+    </div>
+</div>
+
+<div class="response  bg-success" [ngClass]="{'response-active':responseActive}">
+    <p  *ngIf="response">{{response}}</p>
+</div>

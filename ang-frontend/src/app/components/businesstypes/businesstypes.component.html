@@ -1,0 +1,21 @@
+<div class="container-fluid separator">
+        <div class="row">
+                <div class="col-5">
+                    <app-add-businesstype></app-add-businesstype>
+                </div>
+                <div class="col-7">
+                        <div class="card w-100">
+                            <div class="card-header">
+                                Businesses Types
+                           </div>
+                              <ul class="list-group list-group-flush">
+                                <li class="list-group-item" *ngFor="let businesstype of businesstypes">
+                                    <app-businesstype  [businesstype]="businesstype"></app-businesstype>
+                                </li>
+                            </ul>
+                        </div>
+                </div>
+        </div>
+</div>
+
+<router-outlet></router-outlet>

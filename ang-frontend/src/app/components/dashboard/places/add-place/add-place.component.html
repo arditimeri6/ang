@@ -1,0 +1,45 @@
+<div class="card popup" [ngClass]="{'active':formActive}">
+        <div class="card-header">Add New Place</div>
+            <div class="card-body">
+                <form #addForm=ngForm (ngSubmit)="onSubmit()">
+                    <div class="alert alert-danger" [hidden]="!error.title">
+                        {{error.title}}
+                    </div>
+                    <div class="form-group">
+                            <label for="title">Title</label>
+                            <input type="text" name="title" class="form-control" id="title"  placeholder="Enter Title" [(ngModel)]="form.title" required>
+                          </div>
+                    <div class="alert alert-danger" [hidden]="!error.address">
+                        {{error.address}}
+                    </div>
+                    <div class="form-group">
+                    <label for="address">Adress</label>
+                    <input type="text" name="address" class="form-control" id="address" placeholder="Enter Description" [(ngModel)]="form.address" required>
+                    </div>
+                    <div class="alert alert-danger" [hidden]="!error.videoid">
+                        {{error.location_id}}
+                    </div>
+
+                    <div class="form-group" >
+                            <label for="location_id">Location</label>
+                            <select  name="location_id" class="form-control" id="location_id"  [(ngModel)]="form.location_id" required>
+                              <option value="null">Select Your Location</option>
+                              <option *ngFor="let location of locations" [value]="location.id">{{location.title}}</option>
+                            </select>
+                          </div>
+                    <div class="col-12">
+                    <div class="row">
+                        <div class="w-100">
+                        <button type="submit" class="btn btn-primary" [disabled]="!addForm.valid">Add</button>
+                        </div>
+                    </div>
+                    </div>
+                </form>
+            </div>
+      </div>
+<div class="overlay" [ngClass]="{'active':formActive}" (click)="close()"></div>
+<button class="btn btn-primary separator float-right" (click)="openPupup()">Add New Place</button>
+
+<div class="response  bg-success" [ngClass]="{'response-active':responseActive}">
+    <p  *ngIf="response">{{response}}</p>
+</div>

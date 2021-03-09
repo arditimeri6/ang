@@ -1,0 +1,39 @@
+
+<div class="dashboard-wrapper-container">
+        <div class="container-fluid">
+            <div class="row">
+        <div class="col-12">
+            <div class="row">
+                <div class="w-100 separator">
+                    <h4 class="float-left">Places</h4>   
+                    <ul class="list-unstyled float-right list-switch">
+                        <li class="d-inline-block"><a (click)="activePublished()">published ({{items?.length}}) </a></li>
+                        <li class="d-inline-block"><a (click)="activeTrashed()"> trashed ({{trasheditems?.length}})</a></li>
+                    </ul>
+                    
+                    
+                </div>
+                    <hr>
+                <div class="w-100"  *ngIf="listActive">
+                    <div class="row">
+                        <app-place *ngFor="let item of items" class="col-12" [item]="item"></app-place>
+                    </div>
+                </div>
+                <div class="w-100" *ngIf="!listActive">
+                    <div class="row">
+                        <app-trashed-place *ngFor="let trasheditem of trasheditems" class="col-12" [trasheditem]="trasheditem"></app-trashed-place>
+                    </div>
+                </div>
+                <div class="w-100">
+                    <app-add-place></app-add-place>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+    <div class="response  bg-danger" [ngClass]="{'response-active':responseActive}">
+            <p *ngIf="response">{{response}}</p>
+    </div>
+    <router-outlet></router-outlet>
+    

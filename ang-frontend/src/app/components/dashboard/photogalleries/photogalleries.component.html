@@ -1,0 +1,30 @@
+<div class="col-12">
+    <div class="row">
+        <div class="w-100 separator">
+            <h4 class="float-left">Photos</h4>   
+            <ul class="list-unstyled float-right list-switch">
+                <li class="d-inline-block"><a (click)="activePublished()">published ({{photogalleries?.length}}) </a></li>
+                <li class="d-inline-block"><a (click)="activeTrashed()"> trashed ({{trashedphotogalleries?.length}})</a></li>
+            </ul>
+            
+           
+        </div>
+            <hr>
+        <div class="w-100"  *ngIf="listActive">
+            <div class="row">
+                <app-photogallery  [places]="places"  *ngFor="let photogallery of photogalleries" class="col-3" [photogallery]="photogallery"></app-photogallery>
+            </div>
+        </div>
+        <div class="w-100" *ngIf="!listActive">
+                <div class="row">
+                    <app-trashed-photogallery *ngFor="let trashedphotogallery of trashedphotogalleries" class="col-3" [trashedphotogallery]="trashedphotogallery"></app-trashed-photogallery>
+                </div>
+        </div>
+        <div class="w-100">
+            <app-add-photogallery [places]="places"></app-add-photogallery>
+        </div>
+    </div>
+</div>
+<div class="response  bg-danger" [ngClass]="{'response-active':responseActive}">
+        <p *ngIf="response">{{response}}</p>
+</div>

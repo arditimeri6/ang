@@ -1,0 +1,28 @@
+<div class="card w-100">
+        <img src="{{trashedphotogallery.imagepath}}" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">{{trashedphotogallery.title}}</h5>
+        <p class="card-text">{{trashedphotogallery.content}}</p>
+        <button class="btn btn-primary float-left" (click)="restorePopup(trashedphotogallery.id)">Restore</button>
+        <button class="btn btn-danger float-right" (click)="deletePopup(trashedphotogallery.id)">Delete</button>
+    </div>
+</div>
+
+<div class="overlay"[ngClass]="{'active':overlayActive == trashedphotogallery.id}" (click)="close()"></div>
+<div class="card popup" [ngClass]="{'active':formDeleteActive == trashedphotogallery.id}">
+    <div class="card-header">Are you sure you want to delete this item permanently</div>
+    <div class="card-body">
+        <button class="btn btn-default float-left" (click)="close()">Cancel</button>
+        <button class="btn btn-danger float-right"(click)="delete(trashedphotogallery.id)">Delete</button>
+    </div>
+</div>
+<div class="card popup" [ngClass]="{'active':formRestoreActive == trashedphotogallery.id}">
+    <div class="card-header">Are you sure you want to restore this item</div>
+    <div class="card-body">
+        <button class="btn btn-default float-left" (click)="close()">Cancel</button>
+        <button class="btn btn-success float-right" (click)="restore(trashedphotogallery.id)">Restore</button>
+    </div>
+</div>
+<div class="response  bg-success" [ngClass]="{'response-active':responseActive == trashedphotogallery.id }">
+        <p  *ngIf="response">{{response}}</p>
+</div>

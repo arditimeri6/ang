@@ -1,0 +1,29 @@
+<div class="card popup" [ngClass]="{'active':formActive}">
+    <div class="card-header">Add Modules</div>
+    <div class="card-body">
+        <form #addForm=ngForm (ngSubmit)="onSubmit()">
+            <div class="form-check" *ngFor="let module of allModules">
+                <input class="form-check-input" type="checkbox" name="{{module.id}}"
+                    value="{{module.id}}" id="{{module.id}}"
+                    [attr.checked]=" userModules.includes(module.id) ? 'checked' : null"
+                    (click)="checkModule(module.id)">
+                <label class="form-check-label" for="{{module.id}}">
+                    {{module.title}}
+                </label>
+            </div>
+            <div class="col-12">
+                <div class="row">
+                    <div class="w-100">
+                        <button type="submit" class="btn btn-primary mr-2" [disabled]="!addForm.valid">Add</button>
+                        <a class="text-white btn btn-secondary" (click)="close()">Cancel</a>
+                    </div>
+                </div>
+            </div> 
+        </form>
+    </div>
+</div>
+<div class="overlay" [ngClass]="{'active':formActive}" (click)="close()"></div>
+
+<div class="response  bg-success" [ngClass]="{'response-active':responseActive}">
+    <p *ngIf="response">{{response}}</p>
+</div>

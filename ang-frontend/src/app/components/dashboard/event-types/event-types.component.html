@@ -1,0 +1,29 @@
+    <!-- <div class="card-header">Plans <span class="float-right"> <button title="Add Plan" class="btn btn-sm btn-outline-primary" (click)="openEditPlansPopup()"><i class="fas fa-plus"></i></button></span></div>
+    <div class="card-body"> -->
+        <div class="container-fluid mt-3">
+            <div class="row">
+                <div class="col-md-6">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Event Type</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let eventType of eventTypes;let i = index">
+                                <td>{{i+1}}</td>
+                                <td>{{eventType.event_type_title}}</td>
+                                <td><button title="Remove" class="btn btn-sm btn-outline-danger" (click)="removeEventType(eventType.id)"><i class="fas fa-minus"></i></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-6 text-center">
+                    <button title="Add" class="btn btn-sm btn-outline-primary" (click)="openAddType()">Add Event Types</button>
+                </div>
+            </div>
+        </div>
+    <!-- </div> -->
+    <app-add-event-types></app-add-event-types>

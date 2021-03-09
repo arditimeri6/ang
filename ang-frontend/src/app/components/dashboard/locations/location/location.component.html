@@ -1,0 +1,56 @@
+
+<div class="row">
+    <div class="col-10">
+            <p>{{location.title}}</p>
+    </div>
+    <div class="col-1">
+            <a class="edit-item" (click)="onUpdatePopup(location.id)"><i class="fas fa-edit"></i></a>
+    </div>
+    <div class="col-1">
+            <a class="delete-item" (click)="onDeletePopup(location.id)"><i class="fas fa-trash-alt"></i></a>
+    </div>
+</div>
+<div class="popup" [ngClass]="{'active': onUpdateActive == location.id }">
+        <div class="card">
+                <div class="card-header">Update Module <a class="float-right" (click)="closeModule()"><i class="fas fa-times"></i></a></div>
+
+                <div class="card-body">
+
+                        <form #updateLocationForm=ngForm (ngSubmit)="onSubmit(updateLocationForm)">
+                                <div class="form-group">
+                                 <div class="alert alert-danger" [hidden]="!error">
+                                           {{error}}
+                                </div>
+                                <label for="exampleInputModule">Update Module</label>
+                                <input type="text" name="module" class="form-control" id="exampleInputModule"  placeholder="Enter new module title" [(ngModel)]="locationTypeTitle" required>
+                                </div>
+                                <div class="col-12">
+                                <div class="row">
+                                        <div class="w-100">
+                                        <button type="submit" class="btn btn-primary" [disabled]="!updateLocationForm.valid">Save Location</button>
+                                        </div>
+                                </div>
+                                </div>
+                        </form>
+                </div>
+        </div>
+</div>
+<div class="popup" [ngClass]="{'active': onDeleteActive == location.id }">
+        <div class="card">
+                <div class="card-header">Are you sure to delete this Location  <a class="float-right" (click)="closeModule()"><i class="fas fa-times"></i></a></div>
+                <div class="card-body">
+                        <div class="form-group">
+                                <div class="w-100">
+                                <button type="submit" class="btn btn-danger" (click)="onDelete(location.id)" >Delete Location</button>
+                                </div>
+                        </div>
+                </div>
+        </div>
+</div>
+
+<div class="overlay" [ngClass]="{'active': onOverlayActive == location.id }"></div>
+
+<div class="response  bg-success" [ngClass]="{'response-active':responseActive}">
+    <p  *ngIf="response">{{response}}</p>
+</div>
+

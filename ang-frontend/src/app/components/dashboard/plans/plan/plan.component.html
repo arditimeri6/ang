@@ -1,0 +1,9 @@
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">{{plan.title}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{plan.price}}€</h6>
+        <p class="card-text">{{plan.description}}</p>
+        <button *ngIf="selectedPlan !== plan.id" class="btn btn-outline-success" (click)="selectPlan(plan.id)">Select</button>
+        <button *ngIf="selectedPlan == plan.id" class="btn btn-success" disabled>Selected</button>
+    </div>
+  </div>

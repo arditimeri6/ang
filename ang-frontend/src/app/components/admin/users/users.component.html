@@ -1,0 +1,69 @@
+<mat-form-field *ngIf="activateArchive == false">
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field>
+<div class="archived float-right">
+    <button class="btn btn-sm btn-outline-info mt-3 mr-3"  *ngIf="activateArchive == false" (click)="openArchive()">Archive</button>
+    <button class="btn btn-sm btn-outline-info mt-3 mr-3"  *ngIf="activateArchive == true" (click)="openUsers()">Users</button>
+</div>
+<div class="content" [ngClass]="{'d-none':activateArchive}">
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort class="w-100">
+            
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+                <td mat-cell *matCellDef="let row"> {{row.email}} </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="role">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Role </th>
+                <td mat-cell *matCellDef="let row"> {{row.roles[0].name}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+                <td mat-cell *matCellDef="let row"> 
+                    <label class="switch">
+                        <input type="checkbox" name="status-{{row.id}}" [checked]="row.status" (change)="onChangeStatus(row.id, row.status)">
+                        <span class="slider round"></span>
+                    </label>
+                </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
+                <td mat-cell *matCellDef="let row">
+                    <button title="Permissions" *ngIf="row.roles[0].name != 'Super Admin'" class="btn btn-sm btn-outline-info mr-2" (click)="openPermissionsPopup(row)"><i class="fas fa-list"></i></button>
+                    <button title="Edit" class="btn btn-sm btn-outline-secondary mr-2" (click)="openPopup(row)"><i class="far fa-edit"></i></button>
+                    <button title="Archive" *ngIf="row.roles[0].name != 'Super Admin'" class="btn btn-sm btn-outline-danger mr-2" (click)="openDeletePopup(row.id)"><i class="far fa-trash-alt"></i></button>
+                </td>
+            </ng-container>
+        
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+    
+        </table>
+      
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+    </div>
+    <app-edit></app-edit>
+    <app-delete></app-delete>
+    <app-permissions></app-permissions>
+</div>
+<div class="content" *ngIf="activateArchive == true">
+    <app-archive></app-archive>
+</div>
+
+<div class="response  bg-success" [ngClass]="{'response-active':responseActive}">
+    <p  *ngIf="response">{{response}}</p>
+</div>

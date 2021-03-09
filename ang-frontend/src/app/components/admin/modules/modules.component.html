@@ -1,0 +1,55 @@
+<mat-form-field *ngIf="activateArchive == false">
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field>
+<div class="archived float-right">
+    <button class="btn btn-sm btn-outline-primary mt-3 mr-3" *ngIf="activateArchive == false" (click)="openAddModule()">Add</button>
+    <button class="btn btn-sm btn-outline-info mt-3 mr-3" *ngIf="activateArchive == false" (click)="openArchive()">Archive</button>
+    <button class="btn btn-sm btn-outline-info mt-3 mr-3" *ngIf="activateArchive == true" (click)="openModules()">Modules</button>
+</div>
+
+<div class="content" [ngClass]="{'d-none':activateArchive}">
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" class="w-100">
+
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="title">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
+                <td mat-cell *matCellDef="let row"> {{row.title}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
+                <td mat-cell *matCellDef="let row">
+                    <button title="Edit" class="btn btn-sm btn-outline-secondary mr-2" (click)="openEditPopup(row)"><i class="far fa-edit"></i></button>
+                    <button title="Archive" class="btn btn-sm btn-outline-danger mr-2" (click)="openDeletePopup(row.id)"><i class="far fa-trash-alt"></i></button>
+                </td>
+            </ng-container>
+
+            <!-- <ng-container matColumnDef="disclaimer">
+                <td class="text-center" mat-footer-cell *matFooterCellDef colspan="6">
+                    No data Available
+                </td>
+            </ng-container> -->
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <!-- <span *ngIf="dataSource.data.length === 0">
+                <tr mat-footer-row *matFooterRowDef="['disclaimer']" class="example-second-footer-row"></tr>
+            </span> -->
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        </table>
+        
+        <mat-paginator  [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+    </div>
+    <app-add-module></app-add-module>
+    <app-delete-module></app-delete-module>
+    <app-edit-module></app-edit-module>
+</div>
+
+<div class="content" *ngIf="activateArchive == true">
+    <app-archive-module></app-archive-module>
+</div>

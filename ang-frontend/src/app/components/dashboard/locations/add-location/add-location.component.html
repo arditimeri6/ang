@@ -1,0 +1,28 @@
+
+            <div class="card">
+                <div class="card-header">Add New Location</div>
+            
+                <div class="card-body">
+  
+                    <form #locationForm=ngForm (ngSubmit)="onSubmit(locationForm)">
+                        <div class="form-group">
+                          <div class="alert alert-danger" [hidden]="!error">
+                                {{error}}
+                          </div>
+                          <label for="title">Location Name</label>
+                          <input type="text" name="title" class="form-control" id="title"  placeholder="Enter Location title" ngModel required>
+                        </div>
+                        <div class="col-12">
+                          <div class="row">
+                            <div class="w-100">
+                              <button type="submit" class="btn btn-primary" [disabled]="!locationForm.valid">Save Location</button>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                </div>
+              </div>
+
+              <div class="response  bg-success" [ngClass]="{'response-active':responseActive}">
+                 <p  *ngIf="response">{{response}}</p>
+              </div>

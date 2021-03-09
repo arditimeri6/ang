@@ -1,0 +1,18 @@
+<div class="dashboard-wrapper-container">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                   <img *ngIf="business && business.logo" class="logo-item" src="{{business.logo}}" alt="">
+                   <div class="form-group">
+                        <label for="imagepath">Upload Logo</label><br>
+                        <input type="file" name="imagepath"  id="imagepath" (change)="onFileSelected($event)" ngModel required>
+                        <br>
+                        <button class="btn btn-primary separator"(click)="updateLogo()">Upload Logo</button>
+                    </div>
+                </div>
+                <div class="col-12">
+                    
+                </div>
+            </div>
+        </div>
+    </div>

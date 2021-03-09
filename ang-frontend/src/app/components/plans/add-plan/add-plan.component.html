@@ -1,0 +1,49 @@
+<!-- <div class="card">
+        <div class="card-header">Add Plan <a class="float-right" (click)="closeModule()"><i class="fas fa-times"></i></a></div>
+            <div class="card-body">
+                <form #addPlanForm=ngForm (ngSubmit)="onSubmit(addPlanForm)">
+                        <div class="form-group">
+                        <div class="alert alert-danger" [hidden]="!error.title">
+                                {{error.title}}
+                        </div>
+                        <label for="title">New Plan Title</label>
+                        <input type="text" name="title" class="form-control" id="title"  placeholder="Enter new title" ngModel required>
+                        </div>
+                        <div class="form-group">
+                        <div class="alert alert-danger" [hidden]="!error.description">
+                                {{error.description}}
+                        </div>   
+                        <label for="description">New Plan Description</label>
+                        <input type="text" name="description" class="form-control" id="description"  placeholder="Enter new description" ngModel required>
+                        </div>
+                        <div class="form-group">
+                        <div class="alert alert-danger" [hidden]="!error.price">
+                                {{error.price}}
+                        </div>      
+                        <label for="price">New Plan Price</label>
+                        <input type="text" name="price" class="form-control" id="price"  placeholder="Enter new Price" ngModel required>
+                        </div>
+                        <div class="form-group">
+                        <div class="alert alert-danger" [hidden]="!error.active">
+                                {{error.active}}
+                        </div>  
+                            <label for="active">Status</label>
+                            <select name="active" id="active" ngModel>
+                                <option value="1">True</option>
+                                <option value="0">False</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <div class="row">
+                                    <div class="w-100">
+                                    <button type="submit" class="btn btn-primary" >Add Plan</button>
+                                    </div>
+                            </div>
+                        </div>
+                </form>
+         </div>
+    </div>
+
+    <div class="response  bg-success" [ngClass]="{'response-active':responseActive}">
+            <p  *ngIf="response">{{response}}</p>
+         </div> -->

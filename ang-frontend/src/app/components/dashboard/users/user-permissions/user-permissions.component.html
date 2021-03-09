@@ -1,0 +1,28 @@
+<div class="card popup" [ngClass]="{'active':formActive}">
+    <div class="card-header">Permissions <span class="float-right"> <button title="Add Permission" class="btn btn-sm btn-outline-primary" (click)="openEditPermissionsPopup()"><i class="fas fa-plus"></i></button></span></div>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Permission</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let permission of userPermissions;let i = index">
+                    <td>{{i+1}}</td>
+                    <td>{{permission.name}}</td>
+                    <td><button title="Remove" class="btn btn-sm btn-outline-danger" (click)="removePermission(permission.name)"><i class="fas fa-minus"></i></button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="overlay" [ngClass]="{'active':formActive}" (click)="close()"></div>
+
+<div class="response  bg-success" [ngClass]="{'response-active':responseActive}">
+    <p *ngIf="response">{{response}}</p>
+</div>
+
+<app-edit-user-permissions></app-edit-user-permissions>

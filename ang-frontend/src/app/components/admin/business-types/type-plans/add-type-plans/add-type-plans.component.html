@@ -1,0 +1,29 @@
+<div class="card popup" [ngClass]="{'active':formActive}">
+    <div class="card-header">Add Plans</div>
+    <div class="card-body">
+        <form #addForm=ngForm (ngSubmit)="onSubmit()">
+            <div class="form-check" *ngFor="let plan of allPlans">
+                <input class="form-check-input" type="checkbox" name="{{plan.id}}"
+                    value="{{plan.id}}" id="{{plan.id}}"
+                    [attr.checked]=" userPlans.includes(plan.id) ? 'checked' : null"
+                    (click)="checkPlan(plan.id)">
+                <label class="form-check-label" for="{{plan.id}}">
+                    {{plan.title}}
+                </label>
+            </div>
+            <div class="col-12">
+                <div class="row">
+                    <div class="w-100">
+                        <button type="submit" class="btn btn-primary mr-2" [disabled]="!addForm.valid">Add</button>
+                        <a class="text-white btn btn-secondary" (click)="close()">Cancel</a>
+                    </div>
+                </div>
+            </div> 
+        </form>
+    </div>
+</div>
+<div class="overlay" [ngClass]="{'active':formActive}" (click)="close()"></div>
+
+<div class="response  bg-success" [ngClass]="{'response-active':responseActive}">
+    <p *ngIf="response">{{response}}</p>
+</div>

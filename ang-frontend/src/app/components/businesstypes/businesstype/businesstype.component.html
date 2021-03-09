@@ -1,0 +1,34 @@
+<div class="row">
+        <div class="col-10">
+                <a [routerLink]="businesstype.id">{{businesstype.title}}</a>
+        </div>
+        <div class="col-1">
+                <a class="edit-item" (click)="onUpdatePopup(businesstype.id)"><i class="fas fa-edit"></i></a>
+        </div>
+        <div class="col-1">
+                <a class="delete-item" (click)="onDelete(businesstype.id)"><i class="fas fa-trash-alt"></i></a>
+        </div>
+    </div>
+    <div class="popup" [ngClass]="{'active': onUpdateActive == businesstype.id }">
+            <div class="card">
+                    <div class="card-header">Update Business Type<a class="float-right" (click)="closeModule()"><i class="fas fa-times"></i></a></div>
+    
+                    <div class="card-body">
+    
+                            <form #updateBusinessForm=ngForm (ngSubmit)="onSubmit(updateBusinessForm)">
+                                    <div class="form-group">
+                                    <label for="exampleInputBusiness">Update Business Type</label>
+                                    <input type="text" name="business" class="form-control" id="exampleInputBusiness"  placeholder="Enter new business title" [(ngModel)]="moduleBusinessTypeTitle" required>
+                                    </div>
+                                    <div class="col-12">
+                                    <div class="row">
+                                            <div class="w-100">
+                                            <button type="submit" class="btn btn-primary" [disabled]="!updateBusinessForm.valid">Save Business Type</button>
+                                            </div>
+                                    </div>
+                                    </div>
+                            </form>
+                    </div>
+            </div>
+    </div>
+<div class="overlay" [ngClass]="{'active': onUpdateActive == businesstype.id }"></div>

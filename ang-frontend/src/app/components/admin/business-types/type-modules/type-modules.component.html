@@ -1,0 +1,28 @@
+<div class="card popup" [ngClass]="{'active':formActive}">
+    <div class="card-header">Modules <span class="float-right"> <button title="Add Module" class="btn btn-sm btn-outline-primary" (click)="openEditModulesPopup()"><i class="fas fa-plus"></i></button></span></div>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Module</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let module of userModules;let i = index">
+                    <td>{{i+1}}</td>
+                    <td>{{module.module_title}}</td>
+                    <td><button title="Remove" class="btn btn-sm btn-outline-danger" (click)="removeModule(module.id)"><i class="fas fa-minus"></i></button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="overlay" [ngClass]="{'active':formActive}" (click)="close()"></div>
+
+<div class="response  bg-success" [ngClass]="{'response-active':responseActive}">
+    <p *ngIf="response">{{response}}</p>
+</div>
+
+<app-add-type-modules></app-add-type-modules>
